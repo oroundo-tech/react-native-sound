@@ -154,6 +154,15 @@ public class RNSoundModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void releaseAll() {
+        Set<Integer> set = this.playerPool.keySet();
+        Integer[] keys = set.toArray(new Integer[set.size()]);
+        for (Integer k : keys) {
+            this.release(k);
+        }
+    }
+
+    @ReactMethod
     public void setVolume(final Integer key, final Float left, final Float right) {
         MediaPlayer player = this.playerPool.get(key);
         if (player != null) {

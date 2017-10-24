@@ -177,6 +177,12 @@ RCT_EXPORT_METHOD(release:(nonnull NSNumber*)key) {
   }
 }
 
+RCT_EXPORT_METHOD(releaseAll) {
+  for(id key in [self playerPool]) {
+    [self release:key];
+  }
+}
+
 RCT_EXPORT_METHOD(setVolume:(nonnull NSNumber*)key withValue:(nonnull NSNumber*)value) {
   AVAudioPlayer* player = [self playerForKey:key];
   if (player) {
