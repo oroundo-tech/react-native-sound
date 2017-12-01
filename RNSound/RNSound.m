@@ -122,7 +122,7 @@ RCT_EXPORT_METHOD(prepare:(NSString*)fileName withKey:(nonnull NSNumber*)key
     fileNameUrl = [NSURL URLWithString:[fileName stringByRemovingPercentEncoding]];
   }
   else {
-    fileNameUrl = [NSURL fileURLWithPath:[fileName stringByRemovingPercentEncoding]];
+    fileNameUrl = [NSURL URLWithString:fileName];
   }
     
   if (fileNameUrl) {
