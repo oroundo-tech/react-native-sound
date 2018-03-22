@@ -81,6 +81,11 @@ Sound.prototype.release = function() {
   return this;
 };
 
+Sound.releaseAll = function() {
+  RNSound.releaseAll();
+  return this;
+};
+
 Sound.prototype.releaseAll = function() {
   RNSound.releaseAll();
   return this;
