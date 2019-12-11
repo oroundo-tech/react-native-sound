@@ -23,6 +23,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.IOException;
+import java.util.Set;
 
 import android.util.Log;
 
@@ -55,6 +56,16 @@ public class RNSoundModule extends ReactContextBaseJavaModule implements AudioMa
   public String getName() {
     return "RNSound";
   }
+
+  @ReactMethod
+  public void releaseAll() {
+    Set<Double> set = this.playerPool.keySet();
+    Double[] keys = set.toArray(new Double[set.size()]);
+    for (Double k : keys) {
+        this.release(k);
+    }
+  }
+
 
   @ReactMethod
   public void prepare(final String fileName, final Double key, final ReadableMap options, final Callback callback) {
@@ -204,7 +215,7 @@ public class RNSoundModule extends ReactContextBaseJavaModule implements AudioMa
       }
       return mediaPlayer;
     }
-    
+
     return null;
   }
 
@@ -320,7 +331,7 @@ public class RNSoundModule extends ReactContextBaseJavaModule implements AudioMa
       }
     }
   }
-	
+
   @Override
   public void onCatalystInstanceDestroy() {
     java.util.Iterator it = this.playerPool.entrySet().iterator();

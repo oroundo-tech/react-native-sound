@@ -105,6 +105,12 @@ RCT_EXPORT_MODULE();
                                      @"NSCachesDirectory", nil];
 }
 
+RCT_EXPORT_METHOD(releaseAll) {
+  for(id key in [self playerPool]) {
+    [self release:key];
+  }
+}
+
 RCT_EXPORT_METHOD(enable : (BOOL)enabled) {
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setCategory:AVAudioSessionCategoryAmbient error:nil];

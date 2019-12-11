@@ -238,6 +238,11 @@ Sound.prototype.isPlaying = function() {
   return this._playing;
 }
 
+Sound.releaseAll = function() {
+  RNSound.releaseAll();
+  return this;
+};
+
 Sound.enable = function(enabled) {
   RNSound.enable(enabled);
 };
